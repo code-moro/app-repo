@@ -52,4 +52,4 @@ management:
       exposure:
         include: '*'
 server:
-  port: 9195
+  port: 100
