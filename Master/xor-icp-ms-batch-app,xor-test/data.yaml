@@ -1,0 +1,55 @@
+spring:
+  cloud:
+    discovery:
+      tags: spring
+  application:
+    name: xor-icp-ms-batch-app
+  main:
+    banner-mode: false
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+  datasource:
+    url: jdbc:oracle:thin:@xyz.com:1521/IFCDB
+    username: hii
+    password: ${xor_DB_PASSWORD}
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+  ie:
+    datasource:
+      jdbc-url: jdbc:oracle:thin:@xyz.com:1521/IFCDB
+      username: hello
+      password: ${IE_DB_PASSWORD}
+  xor:
+    datasource:
+      jdbc-url: jdbc:oracle:thin:@xyz.com:1521/IFCDB
+      username: hii
+      password: ${xor_DB_PASSWORD}
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    org:
+      hibernate:
+        SQL: info
+  file:
+    path: /data/xorlogs/ms/xor-icp-ms-batch-app
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 9195
